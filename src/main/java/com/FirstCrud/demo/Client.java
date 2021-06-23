@@ -17,6 +17,7 @@ public class Client {
     @Column(name = "phone")
     private String phone;
 
+    @Id
     public Long getClientID() {
         return clientID;
     }
