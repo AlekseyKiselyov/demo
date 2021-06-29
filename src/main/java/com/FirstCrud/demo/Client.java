@@ -1,10 +1,13 @@
 package com.FirstCrud.demo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "clients")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -6,11 +6,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class ClientService1 implements ClientService{
+public class ClientServiceImpl implements ClientService{
     ClientRepository clientRepository;
 
     @Autowired
-    public ClientService1(ClientRepository clientRepository){
+    public ClientServiceImpl(ClientRepository clientRepository){
         this.clientRepository = clientRepository;
     }
 
@@ -26,12 +26,20 @@ public class ClientService1 implements ClientService{
     }
 
     @Override
-    public void updateClient(Long id) {
-        // спросить
+    public boolean updateClient(Client client, Long id) {
+        if(clientRepository.existsById(id)){
+            client.setClientID(id);
+            clientRepository.save(client);
+            return true;
+        }
+        else return false;
     }
 
     @Override
-    public void deleteClientById(Long id) {
-        clientRepository.deleteById(id);
+    public boolean deleteClientById(Long id) {
+        if (clientRepository.existsById(id)) {
+            clientRepository.deleteById(id);
+            return true;
+        } else return false;
     }
 }
